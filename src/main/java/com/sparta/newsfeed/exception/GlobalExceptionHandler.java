@@ -53,4 +53,15 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST
         );
     }
+
+    @ExceptionHandler({NotFoundProductException.class})
+    public ResponseEntity<ApiResponseDto> NotFoundProductExceptionHandler(NotFoundProductException ex) {
+        ApiResponseDto responseDto = new ApiResponseDto(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(
+                // HTTP body
+                responseDto,
+                // HTTP status code
+                HttpStatus.NOT_FOUND
+        );
+    }
 }
