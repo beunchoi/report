@@ -2,11 +2,13 @@ package com.sparta.newsfeed.dto;
 
 import com.sparta.newsfeed.entity.CategoryEnum;
 import com.sparta.newsfeed.entity.Product;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor
 public class ProductResponseDto {
     private Long productId;
     private String username;
