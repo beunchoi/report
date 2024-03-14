@@ -1,5 +1,6 @@
 package com.sparta.newsfeed.service;
 
+import com.sparta.newsfeed.cond.ProductSearchCond;
 import com.sparta.newsfeed.dto.PageDto;
 import com.sparta.newsfeed.dto.ProductRequestDto;
 import com.sparta.newsfeed.dto.ProductResponseDto;
@@ -59,6 +60,13 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<ProductResponseDto> getProductById(Long productId) {
         return productRepository.findProductByProductId(productId).stream().map(ProductResponseDto::new).toList();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Page<Product> searchByCategory(CategoryEnum category, PageDto pageDto) {
+        var cond = ProductSearchCond.builder().category(category).build();
+        return productRepository.searchByCategory(cond, pageDto.toPageable());
     }
 
     @Override

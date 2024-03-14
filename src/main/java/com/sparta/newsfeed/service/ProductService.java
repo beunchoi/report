@@ -32,6 +32,8 @@ public interface ProductService {
 
     List<ProductResponseDto> getProductById(Long productId);
 
+    Page<Product> searchByCategory(CategoryEnum category,PageDto pageDto);
+
     List<ProductResponseDto> searchProduct(String param);
 
     Long updateProduct(Long productId, ProductRequestDto requestDto);

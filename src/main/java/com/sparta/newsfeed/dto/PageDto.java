@@ -6,6 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.Objects;
+
 @AllArgsConstructor
 public class PageDto {
     @Positive
@@ -14,6 +16,10 @@ public class PageDto {
     private String sortBy;
 
     public Pageable toPageable() {
-        return PageRequest.of(currentPage-1, size, Sort.by(sortBy).descending());
+        if(Objects.isNull(sortBy)) {
+            return PageRequest.of(currentPage-1, size);
+        } else {
+            return PageRequest.of(currentPage - 1, size, Sort.by(sortBy).descending());
+        }
     }
 }

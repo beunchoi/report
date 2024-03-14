@@ -6,9 +6,14 @@ import com.sparta.newsfeed.security.UserDetailsImpl;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "product")
 @NoArgsConstructor
 public class Product extends Timestamped {
@@ -22,6 +27,9 @@ public class Product extends Timestamped {
 
     @Column(nullable = false)
     private String username;
+
+    @OneToMany(mappedBy = "product")
+    private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -38,6 +46,11 @@ public class Product extends Timestamped {
 
     @Column(nullable = false)
     private String imageUrl;
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        comment.setProduct(this);
+    }
 
     public Product(ProductRequestDto requestDto, UserDetailsImpl userDetails, String imageUrl) {
         this.user = userDetails.getUser();
