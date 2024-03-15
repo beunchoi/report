@@ -1,3 +1,10 @@
+### 스프링 심화 코드 개선 과제
+-[x] Controller, Service 패키지 내 클래스 개선
+-[x] CustomException 정의 및 SpringAOP 적용
+-[x] QueryDSL 을 사용하여 검색 기능 만들기
+-[x] Pageable 을 사용하여 페이징 및 정렬 기능 만들기
+-[x] Service 테스트 코드 작성하기
+
 ### 기능명세서
  - [ ] 회원가입 기능
    - [ ] email, nickname, password, userinfo 를 입력받아 저장
