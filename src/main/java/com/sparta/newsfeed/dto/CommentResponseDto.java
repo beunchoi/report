@@ -14,7 +14,7 @@ public class CommentResponseDto {
     public String contents;
 
     public CommentResponseDto(Comment comment){
-        this.commentId = comment.getId();
+        this.commentId = comment.getCommentId();
         this.userId = comment.getUser().getUserId();
         this.contents = comment.getContents();
     }

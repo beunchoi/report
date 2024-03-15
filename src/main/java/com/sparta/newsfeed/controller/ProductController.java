@@ -1,10 +1,14 @@
 package com.sparta.newsfeed.controller;
 
+import com.sparta.newsfeed.dto.PageDto;
 import com.sparta.newsfeed.dto.ProductRequestDto;
 import com.sparta.newsfeed.dto.ProductResponseDto;
+import com.sparta.newsfeed.entity.CategoryEnum;
+import com.sparta.newsfeed.entity.Product;
 import com.sparta.newsfeed.security.UserDetailsImpl;
 import com.sparta.newsfeed.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +33,11 @@ public class ProductController {
     @GetMapping("/product/{productId}")
     public List<ProductResponseDto> getProductById(@PathVariable Long productId) {
         return productService.getProductById(productId);
+    }
+
+    @GetMapping("/product")
+    public Page<Product> searchByCategory(CategoryEnum category, PageDto pageDto) {
+        return productService.searchByCategory(category,pageDto);
     }
 
     @GetMapping("/product/search")
